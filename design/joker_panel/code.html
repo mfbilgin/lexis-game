@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Joker Panel - Word Puzzle</title>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Spline+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind Config -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#13ec5b",
+                        "background-light": "#f6f8f6",
+                        "background-dark": "#102216",
+                    },
+                    fontFamily: {
+                        "display": ["Spline Sans", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "2xl": "1rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        .backdrop-blur-custom {
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display h-screen w-full flex items-center justify-center overflow-hidden relative">
+<!-- Gameplay Background Simulation (Abstract content to show overlay effect) -->
+<div class="absolute inset-0 z-0 flex flex-col items-center justify-center opacity-40 select-none pointer-events-none">
+<div class="grid grid-cols-5 gap-2 mb-8">
+<div class="w-12 h-12 rounded bg-gray-300 dark:bg-gray-700"></div>
+<div class="w-12 h-12 rounded bg-primary text-background-dark font-bold text-2xl flex items-center justify-center">J</div>
+<div class="w-12 h-12 rounded bg-primary text-background-dark font-bold text-2xl flex items-center justify-center">O</div>
+<div class="w-12 h-12 rounded bg-gray-300 dark:bg-gray-700"></div>
+<div class="w-12 h-12 rounded bg-gray-300 dark:bg-gray-700"></div>
+</div>
+<div class="w-full max-w-sm h-64 bg-gray-200 dark:bg-gray-800 rounded-lg" data-alt="blurred word puzzle game board background"></div>
+</div>
+<!-- Modal Overlay Backdrop -->
+<div class="absolute inset-0 bg-background-dark/80 backdrop-blur-custom z-40 flex items-center justify-center p-4">
+<!-- Modal Card -->
+<div class="w-full max-w-sm bg-[#1a2c20] border border-[#2d4a35] dark:border-[#2d4a35] rounded-2xl shadow-2xl overflow-hidden transform transition-all relative">
+<!-- Close Button -->
+<button class="absolute top-4 right-4 text-gray-400 hover:text-white transition-colors p-1">
+<span class="material-symbols-outlined text-2xl">close</span>
+</button>
+<!-- Header -->
+<div class="pt-8 pb-6 px-6 text-center">
+<h2 class="text-white text-2xl font-bold tracking-tight mb-1">Select a Joker</h2>
+<p class="text-gray-400 text-sm">Boost your game with a power-up</p>
+</div>
+<!-- Content List -->
+<div class="px-4 pb-6 space-y-3">
+<!-- Option 1: Reveal Vowel -->
+<button class="w-full group relative flex items-center justify-between p-4 bg-[#233629] hover:bg-[#2d4234] border border-transparent hover:border-primary/30 rounded-xl transition-all duration-200">
+<div class="flex items-center gap-4">
+<div class="flex items-center justify-center size-12 rounded-lg bg-[#2f4d39] text-primary group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined" style="font-size: 28px;">format_underlined</span>
+</div>
+<div class="text-left">
+<h3 class="text-white text-lg font-semibold leading-none mb-1">Reveal Vowel</h3>
+<p class="text-gray-400 text-xs">Uncover all A, E, I, O, U</p>
+</div>
+</div>
+<div class="flex flex-col items-end gap-1">
+<span class="bg-primary text-background-dark text-xs font-bold px-2.5 py-1 rounded-full">3 left</span>
+</div>
+</button>
+<!-- Option 2: Reveal Consonant -->
+<button class="w-full group relative flex items-center justify-between p-4 bg-[#233629] hover:bg-[#2d4234] border border-transparent hover:border-primary/30 rounded-xl transition-all duration-200">
+<div class="flex items-center gap-4">
+<div class="flex items-center justify-center size-12 rounded-lg bg-[#2f4d39] text-primary group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined" style="font-size: 28px;">abc</span>
+</div>
+<div class="text-left">
+<h3 class="text-white text-lg font-semibold leading-none mb-1">Reveal Consonant</h3>
+<p class="text-gray-400 text-xs">Show a random consonant</p>
+</div>
+</div>
+<div class="flex flex-col items-end gap-1">
+<span class="bg-[#2f4d39] text-primary text-xs font-bold px-2.5 py-1 rounded-full border border-primary/20">1 left</span>
+</div>
+</button>
+<!-- Option 3: Extra Guess (Disabled/Empty State) -->
+<button class="w-full group relative flex items-center justify-between p-4 bg-[#1e2e24]/50 border border-transparent rounded-xl opacity-60 cursor-not-allowed">
+<div class="flex items-center gap-4">
+<div class="flex items-center justify-center size-12 rounded-lg bg-[#28382f] text-gray-500">
+<span class="material-symbols-outlined" style="font-size: 28px;">help_center</span>
+</div>
+<div class="text-left">
+<h3 class="text-gray-400 text-lg font-semibold leading-none mb-1">Extra Guess</h3>
+<p class="text-gray-600 text-xs">Get one more try</p>
+</div>
+</div>
+<div class="flex flex-col items-end gap-1">
+<span class="bg-gray-700 text-gray-400 text-xs font-bold px-2.5 py-1 rounded-full">0 left</span>
+<div class="flex items-center gap-1 mt-1">
+<span class="material-symbols-outlined text-primary text-[10px]">add_circle</span>
+<span class="text-[10px] text-primary font-medium uppercase tracking-wide">Buy</span>
+</div>
+</div>
+</button>
+</div>
+<!-- Footer Note -->
+<div class="bg-[#15231a] py-3 px-6 text-center border-t border-[#2d4a35]">
+<div class="flex items-center justify-center gap-2 text-[#9db9a6] text-xs">
+<span class="material-symbols-outlined text-[16px]">wifi_off</span>
+<span>Not usable in online matches</span>
+</div>
+</div>
+</div>
+</div>
+</body></html>

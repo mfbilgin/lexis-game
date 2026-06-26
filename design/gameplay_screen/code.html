@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Word Puzzle Gameplay</title>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Spline+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#13ec5b",
+                        "background-light": "#f6f8f6",
+                        "background-dark": "#102216",
+                    },
+                    fontFamily: {
+                        "display": ["Spline Sans", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem", 
+                        "lg": "0.5rem", 
+                        "xl": "0.75rem", 
+                        "2xl": "1rem",
+                        "full": "9999px"
+                    },
+                    animation: {
+                        'pop': 'pop 0.1s ease-in-out',
+                    },
+                    keyframes: {
+                        pop: {
+                            '0%, 100%': { transform: 'scale(1)' },
+                            '50%': { transform: 'scale(1.1)' },
+                        }
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom scrollbar hiding for cleaner mobile look */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-gray-900 dark:text-white h-screen overflow-hidden flex flex-col antialiased selection:bg-primary selection:text-black">
+<!-- Top Bar -->
+<header class="flex items-center justify-between px-6 pt-12 pb-4 w-full z-10 shrink-0">
+<!-- Timer -->
+<div class="flex items-center gap-2 bg-white/5 dark:bg-white/5 backdrop-blur-md px-3 py-1.5 rounded-full border border-black/5 dark:border-white/10">
+<span class="material-symbols-outlined text-primary text-[20px]" data-icon="timer">timer</span>
+<span class="text-sm font-bold tracking-wide tabular-nums">0:45</span>
+</div>
+<!-- Title -->
+<h1 class="text-xl font-bold tracking-tight text-center uppercase hidden sm:block opacity-80">Word Puzzle</h1>
+<!-- Attempts -->
+<div class="flex items-center gap-2 bg-white/5 dark:bg-white/5 backdrop-blur-md px-3 py-1.5 rounded-full border border-black/5 dark:border-white/10">
+<span class="text-xs uppercase font-semibold text-gray-500 dark:text-gray-400 mr-1">Round</span>
+<span class="text-sm font-bold tracking-wide text-primary">3 / 6</span>
+</div>
+</header>
+<!-- Game Grid Area -->
+<main class="flex-1 flex flex-col items-center justify-center p-4 w-full max-w-md mx-auto relative">
+<div class="grid grid-cols-5 gap-2 w-full aspect-[5/6] max-h-[65vh]">
+<!-- Row 1: Past Attempt (Revealed) -->
+<!-- C: Correct (Green) -->
+<div class="flex items-center justify-center border-0 bg-primary text-background-dark text-3xl font-bold rounded-lg uppercase shadow-sm">C</div>
+<!-- R: Wrong Place (Yellow) -->
+<div class="flex items-center justify-center border-0 bg-yellow-400 text-background-dark text-3xl font-bold rounded-lg uppercase shadow-sm">R</div>
+<!-- A: Absent (Gray) -->
+<div class="flex items-center justify-center border-0 bg-gray-700 text-white text-3xl font-bold rounded-lg uppercase shadow-sm">A</div>
+<!-- N: Absent (Gray) -->
+<div class="flex items-center justify-center border-0 bg-gray-700 text-white text-3xl font-bold rounded-lg uppercase shadow-sm">N</div>
+<!-- E: Absent (Gray) -->
+<div class="flex items-center justify-center border-0 bg-gray-700 text-white text-3xl font-bold rounded-lg uppercase shadow-sm">E</div>
+<!-- Row 2: Past Attempt (Revealed) -->
+<!-- G: Correct -->
+<div class="flex items-center justify-center border-0 bg-primary text-background-dark text-3xl font-bold rounded-lg uppercase shadow-sm">G</div>
+<!-- H: Absent -->
+<div class="flex items-center justify-center border-0 bg-gray-700 text-white text-3xl font-bold rounded-lg uppercase shadow-sm">H</div>
+<!-- O: Correct -->
+<div class="flex items-center justify-center border-0 bg-primary text-background-dark text-3xl font-bold rounded-lg uppercase shadow-sm">O</div>
+<!-- S: Correct -->
+<div class="flex items-center justify-center border-0 bg-primary text-background-dark text-3xl font-bold rounded-lg uppercase shadow-sm">S</div>
+<!-- T: Wrong Place -->
+<div class="flex items-center justify-center border-0 bg-yellow-400 text-background-dark text-3xl font-bold rounded-lg uppercase shadow-sm">T</div>
+<!-- Row 3: Current Active Row -->
+<div class="flex items-center justify-center border-2 border-gray-400 dark:border-gray-500 text-3xl font-bold rounded-lg uppercase animate-pop">S</div>
+<div class="flex items-center justify-center border-2 border-gray-400 dark:border-gray-500 text-3xl font-bold rounded-lg uppercase animate-pop">T</div>
+<div class="flex items-center justify-center border-2 border-gray-400 dark:border-gray-500 text-3xl font-bold rounded-lg uppercase animate-pop">O</div>
+<div class="flex items-center justify-center border-2 border-gray-800 dark:border-gray-700 text-3xl font-bold rounded-lg uppercase"></div>
+<div class="flex items-center justify-center border-2 border-gray-800 dark:border-gray-700 text-3xl font-bold rounded-lg uppercase"></div>
+<!-- Row 4: Empty -->
+<div class="flex items-center justify-center border-2 border-gray-200 dark:border-gray-800/50 rounded-lg uppercase"></div>
+<div class="flex items-center justify-center border-2 border-gray-200 dark:border-gray-800/50 rounded-lg uppercase"></div>
+<div class="flex items-center justify-center border-2 border-gray-200 dark:border-gray-800/50 rounded-lg uppercase"></div>
+<div class="flex items-center justify-center border-2 border-gray-200 dark:border-gray-800/50 rounded-lg uppercase"></div>
+<div class="flex items-center justify-center border-2 border-gray-200 dark:border-gray-800/50 rounded-lg uppercase"></div>
+<!-- Row 5: Empty -->
+<div class="flex items-center justify-center border-2 border-gray-200 dark:border-gray-800/50 rounded-lg uppercase"></div>
+<div class="flex items-center justify-center border-2 border-gray-200 dark:border-gray-800/50 rounded-lg uppercase"></div>
+<div class="flex items-center justify-center border-2 border-gray-200 dark:border-gray-800/50 rounded-lg uppercase"></div>
+<div class="flex items-center justify-center border-2 border-gray-200 dark:border-gray-800/50 rounded-lg uppercase"></div>
+<div class="flex items-center justify-center border-2 border-gray-200 dark:border-gray-800/50 rounded-lg uppercase"></div>
+<!-- Row 6: Empty -->
+<div class="flex items-center justify-center border-2 border-gray-200 dark:border-gray-800/50 rounded-lg uppercase"></div>
+<div class="flex items-center justify-center border-2 border-gray-200 dark:border-gray-800/50 rounded-lg uppercase"></div>
+<div class="flex items-center justify-center border-2 border-gray-200 dark:border-gray-800/50 rounded-lg uppercase"></div>
+<div class="flex items-center justify-center border-2 border-gray-200 dark:border-gray-800/50 rounded-lg uppercase"></div>
+<div class="flex items-center justify-center border-2 border-gray-200 dark:border-gray-800/50 rounded-lg uppercase"></div>
+</div>
+</main>
+<!-- Virtual Keyboard -->
+<footer class="w-full max-w-md mx-auto px-1 pb-8 shrink-0">
+<div class="flex flex-col gap-2 w-full">
+<!-- Row 1 -->
+<div class="flex gap-1.5 justify-center w-full">
+<button class="flex-1 h-14 rounded bg-gray-300 dark:bg-gray-600/30 text-base font-bold text-gray-900 dark:text-white flex items-center justify-center active:scale-95 transition-transform uppercase">q</button>
+<button class="flex-1 h-14 rounded bg-gray-300 dark:bg-gray-600/30 text-base font-bold text-gray-900 dark:text-white flex items-center justify-center active:scale-95 transition-transform uppercase">w</button>
+<button class="flex-1 h-14 rounded bg-gray-400/50 dark:bg-gray-700 text-base font-bold text-gray-900 dark:text-gray-500 flex items-center justify-center active:scale-95 transition-transform uppercase">e</button>
+<button class="flex-1 h-14 rounded bg-yellow-400 text-base font-bold text-background-dark flex items-center justify-center active:scale-95 transition-transform uppercase">r</button>
+<button class="flex-1 h-14 rounded bg-yellow-400 text-base font-bold text-background-dark flex items-center justify-center active:scale-95 transition-transform uppercase">t</button>
+<button class="flex-1 h-14 rounded bg-gray-300 dark:bg-gray-600/30 text-base font-bold text-gray-900 dark:text-white flex items-center justify-center active:scale-95 transition-transform uppercase">y</button>
+<button class="flex-1 h-14 rounded bg-gray-300 dark:bg-gray-600/30 text-base font-bold text-gray-900 dark:text-white flex items-center justify-center active:scale-95 transition-transform uppercase">u</button>
+<button class="flex-1 h-14 rounded bg-gray-300 dark:bg-gray-600/30 text-base font-bold text-gray-900 dark:text-white flex items-center justify-center active:scale-95 transition-transform uppercase">i</button>
+<button class="flex-1 h-14 rounded bg-primary text-base font-bold text-background-dark flex items-center justify-center active:scale-95 transition-transform uppercase">o</button>
+<button class="flex-1 h-14 rounded bg-gray-300 dark:bg-gray-600/30 text-base font-bold text-gray-900 dark:text-white flex items-center justify-center active:scale-95 transition-transform uppercase">p</button>
+</div>
+<!-- Row 2 -->
+<div class="flex gap-1.5 justify-center w-full px-4">
+<button class="flex-1 h-14 rounded bg-gray-400/50 dark:bg-gray-700 text-base font-bold text-gray-900 dark:text-gray-500 flex items-center justify-center active:scale-95 transition-transform uppercase">a</button>
+<button class="flex-1 h-14 rounded bg-primary text-base font-bold text-background-dark flex items-center justify-center active:scale-95 transition-transform uppercase">s</button>
+<button class="flex-1 h-14 rounded bg-gray-300 dark:bg-gray-600/30 text-base font-bold text-gray-900 dark:text-white flex items-center justify-center active:scale-95 transition-transform uppercase">d</button>
+<button class="flex-1 h-14 rounded bg-gray-300 dark:bg-gray-600/30 text-base font-bold text-gray-900 dark:text-white flex items-center justify-center active:scale-95 transition-transform uppercase">f</button>
+<button class="flex-1 h-14 rounded bg-primary text-base font-bold text-background-dark flex items-center justify-center active:scale-95 transition-transform uppercase">g</button>
+<button class="flex-1 h-14 rounded bg-gray-400/50 dark:bg-gray-700 text-base font-bold text-gray-900 dark:text-gray-500 flex items-center justify-center active:scale-95 transition-transform uppercase">h</button>
+<button class="flex-1 h-14 rounded bg-gray-300 dark:bg-gray-600/30 text-base font-bold text-gray-900 dark:text-white flex items-center justify-center active:scale-95 transition-transform uppercase">j</button>
+<button class="flex-1 h-14 rounded bg-gray-300 dark:bg-gray-600/30 text-base font-bold text-gray-900 dark:text-white flex items-center justify-center active:scale-95 transition-transform uppercase">k</button>
+<button class="flex-1 h-14 rounded bg-gray-300 dark:bg-gray-600/30 text-base font-bold text-gray-900 dark:text-white flex items-center justify-center active:scale-95 transition-transform uppercase">l</button>
+</div>
+<!-- Row 3 -->
+<div class="flex gap-1.5 justify-center w-full">
+<!-- Enter Key -->
+<button class="h-14 px-4 rounded bg-gray-400 dark:bg-gray-600 text-sm font-bold text-white flex items-center justify-center active:scale-95 transition-transform uppercase">Enter</button>
+<button class="flex-1 h-14 rounded bg-gray-300 dark:bg-gray-600/30 text-base font-bold text-gray-900 dark:text-white flex items-center justify-center active:scale-95 transition-transform uppercase">z</button>
+<button class="flex-1 h-14 rounded bg-gray-300 dark:bg-gray-600/30 text-base font-bold text-gray-900 dark:text-white flex items-center justify-center active:scale-95 transition-transform uppercase">x</button>
+<button class="flex-1 h-14 rounded bg-primary text-base font-bold text-background-dark flex items-center justify-center active:scale-95 transition-transform uppercase">c</button>
+<button class="flex-1 h-14 rounded bg-gray-300 dark:bg-gray-600/30 text-base font-bold text-gray-900 dark:text-white flex items-center justify-center active:scale-95 transition-transform uppercase">v</button>
+<button class="flex-1 h-14 rounded bg-gray-300 dark:bg-gray-600/30 text-base font-bold text-gray-900 dark:text-white flex items-center justify-center active:scale-95 transition-transform uppercase">b</button>
+<button class="flex-1 h-14 rounded bg-gray-400/50 dark:bg-gray-700 text-base font-bold text-gray-900 dark:text-gray-500 flex items-center justify-center active:scale-95 transition-transform uppercase">n</button>
+<button class="flex-1 h-14 rounded bg-gray-300 dark:bg-gray-600/30 text-base font-bold text-gray-900 dark:text-white flex items-center justify-center active:scale-95 transition-transform uppercase">m</button>
+<!-- Backspace Key -->
+<button class="h-14 px-4 rounded bg-gray-400 dark:bg-gray-600 text-white flex items-center justify-center active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-[22px]">backspace</span>
+</button>
+</div>
+</div>
+</footer>
+</body></html>

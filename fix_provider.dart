@@ -1,0 +1,1 @@
+import 'dart:io'; void main() { var lines = File('lib/providers/game_provider.dart').readAsLinesSync(); lines.removeRange(579, 775); File('lib/providers/game_provider.dart').writeAsStringSync(lines.join('\n')); }

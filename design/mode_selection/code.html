@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Offline Mode Selection</title>
+<!-- Google Fonts: Spline Sans -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Spline+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Theme Configuration -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#13ec5b",
+                        "background-light": "#f6f8f6",
+                        "background-dark": "#102216",
+                        "surface-dark": "#1A2E22",
+                        "surface-light": "#ffffff",
+                    },
+                    fontFamily: {
+                        "display": ["Spline Sans", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "md": "0.375rem", "lg": "0.5rem", "xl": "0.75rem", "2xl": "1rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Spline Sans', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .icon-fill {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark min-h-screen flex flex-col text-slate-900 dark:text-white transition-colors duration-300">
+<!-- Top Navigation -->
+<header class="flex items-center justify-between p-6 pb-2">
+<button class="flex items-center justify-center w-10 h-10 rounded-full hover:bg-black/5 dark:hover:bg-white/10 transition-colors">
+<span class="material-symbols-outlined text-2xl">arrow_back</span>
+</button>
+<div class="flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20">
+<span class="material-symbols-outlined text-primary text-sm icon-fill">bolt</span>
+<span class="text-xs font-bold text-primary tracking-wide">STREAK: 5</span>
+</div>
+</header>
+<!-- Main Content Area -->
+<main class="flex-1 flex flex-col px-6 pt-4 pb-24 overflow-y-auto scrollbar-hide">
+<!-- Header Text -->
+<div class="mb-8">
+<h1 class="text-4xl md:text-5xl font-bold tracking-tight mb-2 text-slate-900 dark:text-white">
+                Offline Play
+            </h1>
+<p class="text-slate-500 dark:text-slate-400 text-lg font-normal leading-relaxed">
+                Sharpen your vocabulary anywhere. <br class="hidden sm:block"/>No internet required.
+            </p>
+</div>
+<!-- Mode Cards Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<!-- Daily Challenge Card (Featured) -->
+<button class="group relative flex flex-col justify-between h-40 md:h-48 p-5 rounded-2xl bg-surface-light dark:bg-surface-dark border-2 border-transparent hover:border-primary/50 active:scale-[0.98] transition-all duration-200 shadow-sm md:col-span-2 overflow-hidden text-left">
+<!-- Decorative Background Blur -->
+<div class="absolute top-0 right-0 w-32 h-32 bg-primary/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 group-hover:bg-primary/20 transition-all duration-500"></div>
+<div class="flex justify-between items-start z-10">
+<div class="p-2.5 bg-primary/10 dark:bg-primary/20 rounded-xl text-primary group-hover:scale-110 transition-transform duration-300">
+<span class="material-symbols-outlined text-3xl">calendar_month</span>
+</div>
+<span class="px-2 py-1 bg-primary text-background-dark text-[10px] font-bold uppercase tracking-wider rounded-md">New</span>
+</div>
+<div class="z-10 mt-auto">
+<h2 class="text-xl font-bold mb-1 group-hover:text-primary transition-colors">Daily Challenge</h2>
+<p class="text-sm text-slate-500 dark:text-slate-400 font-medium">One word, one chance. Refreshes daily.</p>
+</div>
+</button>
+<!-- 4-Letter Mode -->
+<button class="group relative flex flex-col justify-between h-40 p-5 rounded-2xl bg-surface-light dark:bg-surface-dark border border-slate-200 dark:border-white/5 hover:border-primary/50 active:scale-[0.98] transition-all duration-200 shadow-sm text-left">
+<div class="flex justify-between items-start w-full">
+<div class="p-2 bg-slate-100 dark:bg-white/5 rounded-xl text-slate-700 dark:text-slate-300 group-hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-2xl">grid_view</span>
+</div>
+</div>
+<div>
+<h2 class="text-lg font-bold mb-0.5">4-Letter</h2>
+<p class="text-xs text-slate-500 dark:text-slate-400">Quick &amp; snappy puzzles</p>
+</div>
+</button>
+<!-- 5-Letter Mode -->
+<button class="group relative flex flex-col justify-between h-40 p-5 rounded-2xl bg-surface-light dark:bg-surface-dark border border-slate-200 dark:border-white/5 hover:border-primary/50 active:scale-[0.98] transition-all duration-200 shadow-sm text-left">
+<div class="flex justify-between items-start w-full">
+<div class="p-2 bg-slate-100 dark:bg-white/5 rounded-xl text-slate-700 dark:text-slate-300 group-hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-2xl">view_module</span>
+</div>
+</div>
+<div>
+<h2 class="text-lg font-bold mb-0.5">5-Letter</h2>
+<p class="text-xs text-slate-500 dark:text-slate-400">The classic experience</p>
+</div>
+</button>
+<!-- 6-Letter Mode -->
+<button class="group relative flex flex-col justify-between h-40 p-5 rounded-2xl bg-surface-light dark:bg-surface-dark border border-slate-200 dark:border-white/5 hover:border-primary/50 active:scale-[0.98] transition-all duration-200 shadow-sm text-left md:col-span-2">
+<div class="flex justify-between items-start w-full">
+<div class="p-2 bg-slate-100 dark:bg-white/5 rounded-xl text-slate-700 dark:text-slate-300 group-hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-2xl">apps</span>
+</div>
+</div>
+<div>
+<h2 class="text-lg font-bold mb-0.5">6-Letter</h2>
+<p class="text-xs text-slate-500 dark:text-slate-400">For vocabulary masters</p>
+</div>
+</button>
+</div>
+</main>
+<!-- Bottom Navigation -->
+<nav class="fixed bottom-0 left-0 right-0 bg-white/80 dark:bg-[#0f1f14]/80 backdrop-blur-lg border-t border-slate-200 dark:border-white/5 pb-safe pt-2 px-6">
+<div class="flex items-center justify-between max-w-md mx-auto h-16">
+<a class="flex-1 flex flex-col items-center gap-1 group" href="#">
+<div class="relative p-1 rounded-xl transition-colors">
+<span class="material-symbols-outlined text-3xl text-primary icon-fill drop-shadow-[0_0_8px_rgba(19,236,91,0.5)]">play_circle</span>
+</div>
+<span class="text-[10px] font-bold text-primary">Play</span>
+</a>
+<a class="flex-1 flex flex-col items-center gap-1 group" href="#">
+<div class="p-1 rounded-xl text-slate-400 group-hover:text-slate-600 dark:group-hover:text-slate-200 transition-colors">
+<span class="material-symbols-outlined text-2xl">emoji_events</span>
+</div>
+<span class="text-[10px] font-medium text-slate-400 group-hover:text-slate-600 dark:group-hover:text-slate-200">Rank</span>
+</a>
+<a class="flex-1 flex flex-col items-center gap-1 group" href="#">
+<div class="p-1 rounded-xl text-slate-400 group-hover:text-slate-600 dark:group-hover:text-slate-200 transition-colors">
+<span class="material-symbols-outlined text-2xl">settings</span>
+</div>
+<span class="text-[10px] font-medium text-slate-400 group-hover:text-slate-600 dark:group-hover:text-slate-200">Settings</span>
+</a>
+</div>
+</nav>
+<!-- Safe area padding for bottom nav (handled by pb-24 in main) -->
+</body></html>

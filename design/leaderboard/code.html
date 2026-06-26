@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Leaderboard UI</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Spline+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Theme Configuration -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#13ec5b",
+                        "background-light": "#f6f8f6",
+                        "background-dark": "#102216",
+                        "surface-dark": "#1A2C20", // Slightly lighter than bg-dark for cards
+                    },
+                    fontFamily: {
+                        "display": ["Spline Sans", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "2xl": "1rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom scrollbar hiding for clean UI */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        .glass-panel {
+            background: rgba(16, 34, 22, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-white font-display min-h-screen flex flex-col overflow-hidden">
+<!-- Top Navigation -->
+<header class="flex items-center justify-between p-4 pt-6 pb-2 z-10 bg-background-light dark:bg-background-dark">
+<button class="flex items-center justify-center size-10 rounded-full hover:bg-black/5 dark:hover:bg-white/10 transition-colors">
+<span class="material-symbols-outlined text-2xl">arrow_back</span>
+</button>
+<h1 class="text-lg font-bold tracking-wide">Leaderboard</h1>
+<button class="flex items-center justify-center size-10 rounded-full hover:bg-black/5 dark:hover:bg-white/10 transition-colors">
+<span class="material-symbols-outlined text-2xl">share</span>
+</button>
+</header>
+<!-- Tab Switcher -->
+<div class="px-4 py-2 z-10 bg-background-light dark:bg-background-dark">
+<div class="flex h-12 w-full items-center rounded-xl bg-slate-200 dark:bg-[#1c3024] p-1 relative">
+<div class="absolute left-1 top-1 bottom-1 w-[calc(50%-4px)] bg-white dark:bg-primary rounded-lg shadow-sm transition-transform duration-300 ease-in-out translate-x-0"></div>
+<button class="flex-1 relative z-10 text-sm font-semibold h-full flex items-center justify-center text-slate-900 dark:text-background-dark">
+                Global
+            </button>
+<button class="flex-1 relative z-10 text-sm font-medium h-full flex items-center justify-center text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors">
+                Language
+            </button>
+</div>
+</div>
+<!-- Scrollable Leaderboard List -->
+<main class="flex-1 overflow-y-auto no-scrollbar pb-24 px-4 pt-2">
+<!-- Top 3 Podium Area (Visual Emphasis) -->
+<div class="flex items-end justify-center gap-4 mb-8 mt-4">
+<!-- 2nd Place -->
+<div class="flex flex-col items-center gap-2">
+<div class="relative">
+<div class="size-16 rounded-full border-2 border-slate-300 dark:border-slate-500 p-1 bg-surface-dark bg-cover bg-center" data-alt="Portrait of the second place player" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDFB9fyuUUBcAV0yq0GXB0rR1mmaiG1GQwAxrTr5kUIy77dgILMu5gGfJ9zIDyZ7ql_QuLp4AUeZXli-7fQawNqxDo853h5c5vtvCh9QnSG54_SOWNtmDfVZU_aZQbmkZdzoYfPaOCNGckmBHXojU5E1ess2GMPdkxXOPF6b0hK7LzDvzkvEAGXYR-4WeHP8uGia_Ds7cHz1C2DZ9pMsxnpaJRYfS0lhWo8LJnKivIIdRwFZi3J3vFzPRsnLXQjejZucaIyJv9dIbw');"></div>
+<div class="absolute -bottom-2 -right-1 size-6 bg-slate-300 text-slate-900 rounded-full flex items-center justify-center text-xs font-bold border-2 border-background-dark shadow-lg">2</div>
+</div>
+<div class="text-center">
+<p class="text-xs font-medium text-slate-400">LexiconLuke</p>
+<p class="text-sm font-bold text-slate-300">14,200</p>
+</div>
+</div>
+<!-- 1st Place -->
+<div class="flex flex-col items-center gap-2 -mt-6">
+<div class="relative">
+<span class="material-symbols-outlined text-yellow-400 text-3xl absolute -top-8 left-1/2 -translate-x-1/2 animate-bounce">emoji_events</span>
+<div class="size-20 rounded-full border-4 border-yellow-400 p-1 bg-surface-dark bg-cover bg-center shadow-[0_0_15px_rgba(250,204,21,0.3)]" data-alt="Portrait of the first place player" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBsL-l_xjakccrhBMRMyTCnTJIrDYK-ia58MvPNb1gAkpat2qSw8mQTGlgji0RJG_xN_xCNvBtEaI9JhHg6thWFzf_dStVmRfkU8E0iVVtsvMvIxi3pbskiwWXNyEefeVdJaOC_MawHRJ5TXESeB_rWvXm7G_3Tlp8z3ndKMpGb_FmpBEj7wRh7R2-DVOuMgtDbQSdAiaN767Zwe3QBHECq_uZU_Ip3knumG-zzye7M91o0Iu1lBuGfuisg1GL3ioJ7UiDzhklDYrg');"></div>
+<div class="absolute -bottom-3 -right-1 size-7 bg-yellow-400 text-yellow-900 rounded-full flex items-center justify-center text-sm font-bold border-2 border-background-dark shadow-lg">1</div>
+</div>
+<div class="text-center">
+<p class="text-xs font-medium text-primary">WordMaster99</p>
+<p class="text-lg font-bold text-yellow-400">15,400</p>
+</div>
+</div>
+<!-- 3rd Place -->
+<div class="flex flex-col items-center gap-2">
+<div class="relative">
+<div class="size-16 rounded-full border-2 border-orange-700/80 p-1 bg-surface-dark bg-cover bg-center" data-alt="Portrait of the third place player" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuD6xE1Ah59AEFP7bmDTwp9Sw0L4dBup8KkSiUq4hxPy9iJ2611iIYKmZ7NwHT6mDDVHvzXKyTu1Ptp-MnesoWrxfdM6h6sVwLjb7N5zsXQzl7iaj68e2l6kxMsEg2eFcqWS3282wxbJe66ylPo7ROcEm_jfSXbCCMZW-5Lkvv8w2i08DY31mxMTLr3Za8DLgdAyfyHq9KgAXfifhO8UuLkQCG5OqWKF9s_dXVuJeegs6pxsA4vv564yR6j3jYNPA-_9zGKMZq7i-UU');"></div>
+<div class="absolute -bottom-2 -right-1 size-6 bg-orange-700 text-orange-100 rounded-full flex items-center justify-center text-xs font-bold border-2 border-background-dark shadow-lg">3</div>
+</div>
+<div class="text-center">
+<p class="text-xs font-medium text-slate-400">AlphaBet</p>
+<p class="text-sm font-bold text-orange-400">13,800</p>
+</div>
+</div>
+</div>
+<!-- List Items -->
+<div class="flex flex-col gap-3">
+<!-- Rank 4 -->
+<div class="flex items-center p-3 bg-white dark:bg-[#1c3024] rounded-xl shadow-sm border border-slate-100 dark:border-white/5">
+<span class="w-8 text-center text-slate-400 font-bold text-sm">4</span>
+<div class="size-10 rounded-full bg-cover bg-center bg-slate-200 ml-2" data-alt="Avatar of user rank 4" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBOlK2pj1invraspoqUkG1R2hsdRc8j2XNXsUpAuA2C3R85gz_onDFx9WLRMie8Beq2HSfONHj8YRVIr0zglLACKTTphCGrXad3C-nmkZE1gS_UH8o1komwhPX54p1Lmkcgs38guweA6rcPiBlKy75x1pVCxCz2yWiv6SgkOhbs2dSvm4C-FMZKYgX1X_ETW8dcheYCFfED05PgcN7JE-csPgk6tNzBlbtWMIlQmG_ayA9V9mKK2bsizXwQRO2PCJt02nlEZ8pw4U8');"></div>
+<div class="ml-3 flex-1">
+<p class="text-sm font-medium text-slate-800 dark:text-slate-100">VocabVicky</p>
+</div>
+<p class="font-bold text-slate-900 dark:text-white">12,450</p>
+</div>
+<!-- Rank 5 -->
+<div class="flex items-center p-3 bg-white dark:bg-[#1c3024] rounded-xl shadow-sm border border-slate-100 dark:border-white/5">
+<span class="w-8 text-center text-slate-400 font-bold text-sm">5</span>
+<div class="size-10 rounded-full bg-cover bg-center bg-slate-200 ml-2" data-alt="Avatar of user rank 5" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBAxgcY0z0bpGM8ue9MSHoQKuiZKIPUmVLX6wrRbbBItAU-nTEDSDta8iqTIERY78B2EGJikQ-nKcEeb70KzS420hxFn2OuG-WqTRsCFZdlO3yv2wTNdTOSyglS2SPeNqJCdWib5kMjgsYiYrwqenfX4h6pQWuEXTgeYDYNRsxdasAQlX8l3Kq5EGFIZzxGVQZstU6INQSUv9B8Y7_efqIAw9wqxCd4H6oRQfWYn5LdmKAksnc-bg0_uG1O3WTzdyvaln0AqyBO3Es');"></div>
+<div class="ml-3 flex-1">
+<p class="text-sm font-medium text-slate-800 dark:text-slate-100">PuzzlePete</p>
+</div>
+<p class="font-bold text-slate-900 dark:text-white">11,200</p>
+</div>
+<!-- Rank 6 -->
+<div class="flex items-center p-3 bg-white dark:bg-[#1c3024] rounded-xl shadow-sm border border-slate-100 dark:border-white/5">
+<span class="w-8 text-center text-slate-400 font-bold text-sm">6</span>
+<div class="size-10 rounded-full bg-cover bg-center bg-slate-200 ml-2" data-alt="Avatar of user rank 6" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuB1Xmo4A5ykcMo59EVhesvmCcrNuS1oP--RmWrg-UVu7iNm0q7WdBjxaP4CoL6-jDPO1gEEP1dGFiJ0PtQCnlIgXJ1pr6NYLMett-sC5Q4p9_2eSu4ool4WSdTPB0JQxSizoufeAdhiEEoi_dmsgArS_gxFske0QX3c1GP4hw-b7tmhQaPX5lGNDPjgeJea2yq2qvpgXAhNhk-b4cSEWP_HvHkZdfTND7DJ_l0B26IkmCvplEUESetrQgm-a7Vb9CG5mIumHkvq-_8');"></div>
+<div class="ml-3 flex-1">
+<p class="text-sm font-medium text-slate-800 dark:text-slate-100">GrammarGuru</p>
+</div>
+<p class="font-bold text-slate-900 dark:text-white">10,850</p>
+</div>
+<!-- Rank 7 -->
+<div class="flex items-center p-3 bg-white dark:bg-[#1c3024] rounded-xl shadow-sm border border-slate-100 dark:border-white/5">
+<span class="w-8 text-center text-slate-400 font-bold text-sm">7</span>
+<div class="size-10 rounded-full bg-cover bg-center bg-slate-200 ml-2" data-alt="Avatar of user rank 7" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCBIFRaTWRpAmSz2jZ55ZSL8mQyGznxKTLrdPseRpCjGFXN88uFwS4HISJWh9HcdHtFwciUcoIuxRyGgVxmGj8qm_HuoqsScrEV8dDSOdiQdu-tHAHG-KRrAsqBtY5QcO_hJYTRd6A1QujP_paMVG7VPpu7z-pLAzIWQ8h0drJvuRWMYRLWpLYDMZPDRgQ8mQomdRe5MEDTJQswFQb0ohkw2DlqYqgDt9n8OR6Bf2bxpH83nHWDCvz04X9zfGRNVghf_9UQVtJdUGw');"></div>
+<div class="ml-3 flex-1">
+<p class="text-sm font-medium text-slate-800 dark:text-slate-100">SynonymSam</p>
+</div>
+<p class="font-bold text-slate-900 dark:text-white">9,900</p>
+</div>
+<!-- Rank 8 -->
+<div class="flex items-center p-3 bg-white dark:bg-[#1c3024] rounded-xl shadow-sm border border-slate-100 dark:border-white/5">
+<span class="w-8 text-center text-slate-400 font-bold text-sm">8</span>
+<div class="size-10 rounded-full bg-cover bg-center bg-slate-200 ml-2" data-alt="Avatar of user rank 8" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuB7WiLe6Iuz5EJXu1yZlyv7VgwMJ6IW0L8dXKtvHXzv2_9ENg6GZPNws38vPTtjeAHfu-9ebv1QzNO9uDQja2lFJSjENhNyqxRtxD8w1aD2TbK4XkjCbvnWgZT4s0AZhaJizNP5QmEUiWaJQ5hS1Yd1cUrBcahLJ6PKVxhdTXhUDM8AA2_lmjaYNpfyFZkQ6R4ZI13chTjcC7o4Dl9gEbWhzj9dTEOnbHXTM9bhYws9IFraahswh4iBqo_vlJisy_YCQWi98LMv-JQ');"></div>
+<div class="ml-3 flex-1">
+<p class="text-sm font-medium text-slate-800 dark:text-slate-100">QuickWitted</p>
+</div>
+<p class="font-bold text-slate-900 dark:text-white">9,100</p>
+</div>
+</div>
+</main>
+<!-- Sticky User Footer -->
+<div class="fixed bottom-0 left-0 w-full glass-panel border-t border-slate-200 dark:border-white/10 p-4 pb-8 z-20 shadow-[0_-5px_20px_rgba(0,0,0,0.3)]">
+<div class="flex items-center justify-between text-xs text-slate-500 dark:text-slate-400 mb-2 px-2">
+<span>Your Position</span>
+<span class="text-primary font-medium flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">arrow_upward</span>
+                Top 5%
+            </span>
+</div>
+<div class="flex items-center p-3 bg-primary/20 rounded-xl border border-primary/30 relative overflow-hidden">
+<!-- Decorative Glow -->
+<div class="absolute -left-4 top-0 w-12 h-full bg-gradient-to-r from-transparent via-primary/10 to-transparent skew-x-12"></div>
+<span class="w-8 text-center text-primary font-bold text-sm">42</span>
+<div class="size-10 rounded-full bg-cover bg-center ml-2 border-2 border-primary/50" data-alt="Current user avatar" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDBtOvrpFs89cREi45hhu9GMjh8HYW7WTsVGIf8zri3pqB2aGUOIFQqrmKzIQVy2cw3BGmVuEzBz6JFhl5aqETvKzvp7yXaJu3GDNn6M0mL_ee1DrRc9ElXJnjcmtshe7ixW_Kn4KUSMiwTvBZT_K_7hQjojMIPhBJwXXU4nlugriAv7RXGdM3rC9Dku1ABANq1ISYnlLJCbR5JFbHjbn7MToizT0j2tFqUuDeB4wxBU4HC-clhvIh95bJo2SxdE--tzo_NOVkFOSQ');"></div>
+<div class="ml-3 flex-1">
+<p class="text-sm font-bold text-slate-900 dark:text-white">You</p>
+<p class="text-xs text-slate-500 dark:text-slate-300">Level 24</p>
+</div>
+<div class="text-right">
+<p class="font-bold text-lg text-primary">8,500</p>
+</div>
+</div>
+</div>
+</body></html>

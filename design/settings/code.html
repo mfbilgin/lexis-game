@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Settings Screen</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Spline+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#13ec5b",
+                        "background-light": "#f6f8f6",
+                        "background-dark": "#102216",
+                        "surface-light": "#ffffff",
+                        "surface-dark": "#182c20", // Slightly lighter than background-dark
+                    },
+                    fontFamily: {
+                        "display": ["Spline Sans", "sans-serif"]
+                    },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "2xl": "1rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom scrollbar hide for cleaner look */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-white min-h-screen flex flex-col antialiased selection:bg-primary selection:text-background-dark">
+<!-- Top App Bar -->
+<header class="sticky top-0 z-50 flex items-center justify-between px-4 py-4 bg-background-light/90 dark:bg-background-dark/90 backdrop-blur-md">
+<button class="p-2 -ml-2 rounded-full hover:bg-slate-200 dark:hover:bg-white/10 transition-colors text-slate-500 dark:text-gray-400">
+<span class="material-symbols-outlined text-[28px]">close</span>
+</button>
+<h1 class="text-lg font-bold tracking-tight">Settings</h1>
+<div class="w-10"></div> <!-- Spacer to center title -->
+</header>
+<!-- Main Content -->
+<main class="flex-1 px-4 pb-8 overflow-y-auto no-scrollbar max-w-md mx-auto w-full">
+<!-- Group 1: Preferences -->
+<div class="mb-6">
+<h2 class="text-xs font-bold text-slate-500 dark:text-gray-400 uppercase tracking-wider mb-2 ml-2">Preferences</h2>
+<div class="bg-surface-light dark:bg-surface-dark rounded-2xl overflow-hidden shadow-sm border border-slate-100 dark:border-white/5">
+<!-- Theme Selector -->
+<div class="p-4 border-b border-slate-100 dark:border-white/5">
+<div class="flex h-10 w-full items-center justify-center rounded-lg bg-slate-100 dark:bg-[#0d1a12] p-1">
+<label class="group relative flex cursor-pointer h-full flex-1 items-center justify-center overflow-hidden rounded-[calc(0.5rem-2px)] text-sm font-medium transition-all">
+<input class="peer sr-only" name="theme" type="radio" value="Light"/>
+<span class="absolute inset-0 bg-white dark:bg-surface-dark shadow-sm opacity-0 peer-checked:opacity-100 transition-opacity"></span>
+<span class="relative z-10 text-slate-500 dark:text-gray-400 peer-checked:text-slate-900 dark:peer-checked:text-white flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">light_mode</span>
+<span class="hidden sm:inline">Light</span>
+</span>
+</label>
+<label class="group relative flex cursor-pointer h-full flex-1 items-center justify-center overflow-hidden rounded-[calc(0.5rem-2px)] text-sm font-medium transition-all">
+<input checked="" class="peer sr-only" name="theme" type="radio" value="Dark"/>
+<span class="absolute inset-0 bg-white dark:bg-surface-dark shadow-sm opacity-0 peer-checked:opacity-100 transition-opacity"></span>
+<span class="relative z-10 text-slate-500 dark:text-gray-400 peer-checked:text-slate-900 dark:peer-checked:text-white flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">dark_mode</span>
+<span class="hidden sm:inline">Dark</span>
+</span>
+</label>
+<label class="group relative flex cursor-pointer h-full flex-1 items-center justify-center overflow-hidden rounded-[calc(0.5rem-2px)] text-sm font-medium transition-all">
+<input class="peer sr-only" name="theme" type="radio" value="System"/>
+<span class="absolute inset-0 bg-white dark:bg-surface-dark shadow-sm opacity-0 peer-checked:opacity-100 transition-opacity"></span>
+<span class="relative z-10 text-slate-500 dark:text-gray-400 peer-checked:text-slate-900 dark:peer-checked:text-white flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">settings_system_daydream</span>
+<span class="hidden sm:inline">Auto</span>
+</span>
+</label>
+</div>
+</div>
+<!-- Sound Toggle -->
+<div class="flex items-center justify-between px-4 py-3.5 border-b border-slate-100 dark:border-white/5 last:border-0 hover:bg-slate-50 dark:hover:bg-white/5 transition-colors">
+<div class="flex items-center gap-3">
+<div class="flex items-center justify-center size-8 rounded-full bg-slate-100 dark:bg-white/10 text-slate-600 dark:text-white">
+<span class="material-symbols-outlined text-[20px]">volume_up</span>
+</div>
+<span class="text-base font-medium">Sound Effects</span>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox" value=""/>
+<div class="w-11 h-6 bg-slate-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-primary/20 dark:peer-focus:ring-primary/40 rounded-full peer dark:bg-white/10 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-primary peer-checked:border-primary"></div>
+</label>
+</div>
+<!-- Music Toggle -->
+<div class="flex items-center justify-between px-4 py-3.5 border-b border-slate-100 dark:border-white/5 last:border-0 hover:bg-slate-50 dark:hover:bg-white/5 transition-colors">
+<div class="flex items-center gap-3">
+<div class="flex items-center justify-center size-8 rounded-full bg-slate-100 dark:bg-white/10 text-slate-600 dark:text-white">
+<span class="material-symbols-outlined text-[20px]">music_note</span>
+</div>
+<span class="text-base font-medium">Music</span>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox" value=""/>
+<div class="w-11 h-6 bg-slate-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-primary/20 dark:peer-focus:ring-primary/40 rounded-full peer dark:bg-white/10 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-primary peer-checked:border-primary"></div>
+</label>
+</div>
+<!-- Language Selector -->
+<button class="w-full flex items-center justify-between px-4 py-3.5 hover:bg-slate-50 dark:hover:bg-white/5 transition-colors text-left">
+<div class="flex items-center gap-3">
+<div class="flex items-center justify-center size-8 rounded-full bg-slate-100 dark:bg-white/10 text-slate-600 dark:text-white">
+<span class="material-symbols-outlined text-[20px]">language</span>
+</div>
+<span class="text-base font-medium">Language</span>
+</div>
+<div class="flex items-center gap-1 text-slate-400 dark:text-gray-500">
+<span class="text-sm font-normal">English</span>
+<span class="material-symbols-outlined text-[20px]">chevron_right</span>
+</div>
+</button>
+</div>
+</div>
+<!-- Group 2: Premium -->
+<div class="mb-6">
+<h2 class="text-xs font-bold text-slate-500 dark:text-gray-400 uppercase tracking-wider mb-2 ml-2">Premium</h2>
+<div class="bg-surface-light dark:bg-surface-dark rounded-2xl overflow-hidden shadow-sm border border-slate-100 dark:border-white/5">
+<!-- Remove Ads -->
+<button class="w-full flex items-center justify-between px-4 py-3.5 hover:bg-slate-50 dark:hover:bg-white/5 transition-colors text-left group">
+<div class="flex items-center gap-3">
+<div class="flex items-center justify-center size-8 rounded-full bg-primary/10 text-primary group-hover:bg-primary group-hover:text-background-dark transition-colors">
+<span class="material-symbols-outlined text-[20px]">block</span>
+</div>
+<span class="text-base font-medium text-slate-900 dark:text-white group-hover:text-primary transition-colors">Remove Ads</span>
+</div>
+<div class="flex items-center text-slate-400 dark:text-gray-500">
+<span class="material-symbols-outlined text-[20px]">chevron_right</span>
+</div>
+</button>
+<!-- Restore Purchases -->
+<button class="w-full flex items-center justify-between px-4 py-3.5 border-t border-slate-100 dark:border-white/5 hover:bg-slate-50 dark:hover:bg-white/5 transition-colors text-left">
+<div class="flex items-center gap-3">
+<div class="flex items-center justify-center size-8 rounded-full bg-slate-100 dark:bg-white/10 text-slate-600 dark:text-white">
+<span class="material-symbols-outlined text-[20px]">restore</span>
+</div>
+<span class="text-base font-medium">Restore Purchases</span>
+</div>
+<div class="flex items-center text-slate-400 dark:text-gray-500">
+<span class="material-symbols-outlined text-[20px]">chevron_right</span>
+</div>
+</button>
+</div>
+</div>
+<!-- Group 3: Support & About -->
+<div class="mb-8">
+<h2 class="text-xs font-bold text-slate-500 dark:text-gray-400 uppercase tracking-wider mb-2 ml-2">Support</h2>
+<div class="bg-surface-light dark:bg-surface-dark rounded-2xl overflow-hidden shadow-sm border border-slate-100 dark:border-white/5">
+<button class="w-full flex items-center justify-between px-4 py-3.5 border-b border-slate-100 dark:border-white/5 hover:bg-slate-50 dark:hover:bg-white/5 transition-colors text-left">
+<div class="flex items-center gap-3">
+<div class="flex items-center justify-center size-8 rounded-full bg-slate-100 dark:bg-white/10 text-slate-600 dark:text-white">
+<span class="material-symbols-outlined text-[20px]">mail</span>
+</div>
+<span class="text-base font-medium">Contact Us</span>
+</div>
+<span class="material-symbols-outlined text-[20px] text-slate-400 dark:text-gray-500">chevron_right</span>
+</button>
+<button class="w-full flex items-center justify-between px-4 py-3.5 border-b border-slate-100 dark:border-white/5 hover:bg-slate-50 dark:hover:bg-white/5 transition-colors text-left">
+<div class="flex items-center gap-3">
+<div class="flex items-center justify-center size-8 rounded-full bg-slate-100 dark:bg-white/10 text-slate-600 dark:text-white">
+<span class="material-symbols-outlined text-[20px]">verified_user</span>
+</div>
+<span class="text-base font-medium">Privacy Policy</span>
+</div>
+<span class="material-symbols-outlined text-[20px] text-slate-400 dark:text-gray-500">open_in_new</span>
+</button>
+<button class="w-full flex items-center justify-between px-4 py-3.5 hover:bg-slate-50 dark:hover:bg-white/5 transition-colors text-left">
+<div class="flex items-center gap-3">
+<div class="flex items-center justify-center size-8 rounded-full bg-slate-100 dark:bg-white/10 text-slate-600 dark:text-white">
+<span class="material-symbols-outlined text-[20px]">description</span>
+</div>
+<span class="text-base font-medium">Terms of Service</span>
+</div>
+<span class="material-symbols-outlined text-[20px] text-slate-400 dark:text-gray-500">open_in_new</span>
+</button>
+</div>
+</div>
+<!-- Footer Info -->
+<div class="flex flex-col items-center justify-center gap-2 mb-8">
+<p class="text-xs font-medium text-slate-400 dark:text-gray-600">Version 1.0.2 (Build 440)</p>
+<div class="flex items-center gap-2 px-3 py-1 rounded-full bg-slate-200/50 dark:bg-white/5 border border-slate-200 dark:border-white/5">
+<span class="relative flex h-2 w-2">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
+</span>
+<span class="text-[10px] font-bold uppercase tracking-wider text-slate-500 dark:text-gray-400">Online</span>
+</div>
+</div>
+</main>
+</body></html>

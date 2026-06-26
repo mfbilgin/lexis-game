@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>LEXIS - Splash Screen</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Spline+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Theme Configuration -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#13ec5b",
+                        "background-light": "#f6f8f6",
+                        "background-dark": "#102216",
+                    },
+                    fontFamily: {
+                        "display": ["Spline Sans", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                    animation: {
+                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-white antialiased overflow-hidden">
+<!-- Splash Screen Container -->
+<div class="relative flex h-screen w-full flex-col items-center justify-between p-6">
+<!-- Background Decor (Subtle Glows) -->
+<div class="absolute inset-0 z-0 pointer-events-none overflow-hidden">
+<!-- Top Right Glow -->
+<div class="absolute -top-[20%] -right-[10%] h-[500px] w-[500px] rounded-full bg-primary/10 blur-[100px] dark:bg-primary/5"></div>
+<!-- Bottom Left Glow -->
+<div class="absolute -bottom-[10%] -left-[10%] h-[400px] w-[400px] rounded-full bg-primary/5 blur-[80px]"></div>
+</div>
+<!-- Spacer for top safe area -->
+<div class="h-12 w-full"></div>
+<!-- Main Content: Centered Logo -->
+<div class="relative z-10 flex flex-1 flex-col items-center justify-center w-full">
+<!-- Logo Container -->
+<div class="relative flex flex-col items-center gap-8">
+<!-- Main Typography -->
+<h1 class="text-[64px] sm:text-[80px] font-bold tracking-tight leading-none text-center select-none">
+<span class="text-slate-900 dark:text-white">LE</span>
+<!-- Stylized X with Glow -->
+<span class="relative inline-block text-primary mx-[-2px]">
+                        X
+                        <div class="absolute inset-0 blur-lg bg-primary/40 rounded-full scale-75 -z-10 animate-pulse-slow"></div>
+</span>
+<span class="text-slate-900 dark:text-white">IS</span>
+</h1>
+<!-- Subtitle / Tagline -->
+<p class="text-slate-500 dark:text-slate-400 text-sm font-medium tracking-[0.2em] uppercase opacity-80">
+                    Daily Word Puzzle
+                </p>
+</div>
+</div>
+<!-- Bottom Section: Loading & Version -->
+<div class="relative z-10 flex w-full flex-col items-center gap-6 pb-8">
+<!-- Loading Indicator -->
+<div class="flex flex-col items-center gap-3 w-full max-w-[200px]">
+<!-- Loading Text -->
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[20px] animate-spin">
+                        progress_activity
+                    </span>
+<p class="text-slate-500 dark:text-slate-400 text-xs font-medium uppercase tracking-wider">
+                        Connecting...
+                    </p>
+</div>
+<!-- Progress Bar -->
+<div class="h-1.5 w-full rounded-full bg-slate-200 dark:bg-slate-800 overflow-hidden">
+<div class="h-full w-[45%] rounded-full bg-primary shadow-[0_0_10px_rgba(19,236,91,0.5)]"></div>
+</div>
+</div>
+<!-- Version Info -->
+<p class="text-slate-400 dark:text-slate-600 text-[10px] font-normal tracking-wide">
+                v1.0.4 © 2024 Lexis Games
+            </p>
+</div>
+</div>
+</body></html>

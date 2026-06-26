@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "298358456490",
+    "project_id": "lexis-2026",
+    "storage_bucket": "lexis-2026.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:298358456490:android:04e59d8cecd11109c290d3",
+        "android_client_info": {
+          "package_name": "com.mfbilgin.lexis"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA3QBVCd4V2BVLBAKbp18K7VWsG8DHEzuo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Online Match - Word Puzzle</title>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Spline+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+            extend: {
+                colors: {
+                "primary": "#13ec5b",
+                "background-light": "#f6f8f6",
+                "background-dark": "#102216",
+                },
+                fontFamily: {
+                "display": ["Spline Sans", "sans-serif"]
+                },
+                borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                boxShadow: {
+                    "glow": "0 0 20px rgba(19, 236, 91, 0.3)",
+                    "glow-strong": "0 0 30px rgba(19, 236, 91, 0.5)",
+                }
+            },
+            },
+        }
+    </script>
+<style>
+        /* Custom scrollbar hiding if needed */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-white font-display h-screen w-full flex flex-col overflow-hidden select-none">
+<!-- Header -->
+<header class="flex items-center justify-between px-4 py-3 shrink-0 relative z-20">
+<button class="p-2 rounded-full hover:bg-black/5 dark:hover:bg-white/5 transition-colors text-slate-900 dark:text-white">
+<span class="material-symbols-outlined">arrow_back</span>
+</button>
+<h1 class="text-lg font-bold tracking-tight">Online Match</h1>
+<div class="w-10 h-10 flex items-center justify-center">
+<button class="text-slate-500 dark:text-slate-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">settings</span>
+</button>
+</div>
+</header>
+<!-- Players / VS Status -->
+<section class="px-6 py-2 shrink-0">
+<div class="flex items-end justify-between max-w-sm mx-auto">
+<!-- Player: You -->
+<div class="flex flex-col items-center gap-2 group cursor-pointer">
+<div class="relative">
+<div class="w-14 h-14 rounded-full p-0.5 bg-gradient-to-tr from-primary to-transparent">
+<img alt="Portrait of a woman with curly hair looking confident" class="w-full h-full rounded-full object-cover border-2 border-background-light dark:border-background-dark" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAwLQcOND2UzAu0k88CR91ijctrv7LFeOeL-54HaMvfy2nvel81_vr73LbvwDJxs9w9JPT5QuDHODm1WnqN4ER6s7fjET1ZicHjDmAJbM1hTlAZc31ebWQEBsrBeJTc7SyT_7Fd8bNrfa86R3bc9lWVt_QyUzVOklEfiEHS_LRK3aIU964TnUYHHkPdGKMJx1wTZljEzIqGWRsul5JIG6uSA8agvrJrO-CstLqTPVtrhU68h1O67aymmncUmjIfcS8P18qFnbcVjw0"/>
+</div>
+<div class="absolute -bottom-1 -right-1 bg-primary text-background-dark text-[10px] font-bold px-1.5 py-0.5 rounded-full border border-background-dark">
+                        YOU
+                    </div>
+</div>
+<div class="text-center">
+<p class="text-sm font-bold leading-none mb-0.5">Sarah</p>
+<p class="text-xs text-slate-500 dark:text-slate-400 font-medium">1450 MMR</p>
+</div>
+</div>
+<!-- VS & Info -->
+<div class="flex flex-col items-center justify-end pb-5 gap-2">
+<!-- Language Flag -->
+<div class="flex items-center gap-1 bg-white/10 dark:bg-black/20 px-2 py-1 rounded-full border border-slate-200 dark:border-white/10">
+<span class="material-symbols-outlined text-base text-slate-700 dark:text-slate-300">flag</span>
+<span class="text-[10px] font-bold uppercase tracking-wide opacity-70">ENG</span>
+</div>
+<span class="text-xs font-bold text-slate-400 dark:text-slate-600 tracking-widest mt-1">VS</span>
+</div>
+<!-- Player: Opponent -->
+<div class="flex flex-col items-center gap-2 group opacity-80 hover:opacity-100 transition-opacity cursor-pointer">
+<div class="relative">
+<div class="w-14 h-14 rounded-full bg-slate-200 dark:bg-white/5 p-0.5">
+<img alt="Portrait of a smiling man with a beard" class="w-full h-full rounded-full object-cover border-2 border-background-light dark:border-background-dark grayscale-[50%]" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBD2CsnzQiNeJpJIBIuNgT1VsAymF128j1NYPC2a1f7tEbKLNUZQuj7ABUwBLznLO9AE5OBaza0rWtYmhA42De7NlM3j5xh6CxRy2H8Ezz02d8HHDBRrhxJL3ckQVQ3bbCQc-8KPYrZ2GdO8o01s446b8TUB8MuSuqVojJUvzPRSLC7s0Ms3UDlJ5e5dB-RkIvDFGMFv4VNUcS5VPazqSGqi5FjD4TSWLvLKXHs2VHFBP8cGMs-W-ifjC2-PDj3bM0njR7ODllUOqk"/>
+</div>
+</div>
+<div class="text-center">
+<p class="text-sm font-semibold leading-none mb-0.5">Marcus</p>
+<p class="text-xs text-slate-500 dark:text-slate-400 font-medium">1420 MMR</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Game Grid Area -->
+<main class="flex-1 flex flex-col items-center justify-center p-4 min-h-0">
+<!-- Grid Container with Win State Glow -->
+<div class="relative group">
+<!-- Win State Glow Effect -->
+<div class="absolute -inset-4 bg-primary/20 blur-xl rounded-full opacity-100 animate-pulse"></div>
+<!-- Grid Board -->
+<div class="relative bg-white dark:bg-[#152a1d] p-3 rounded-xl border-2 border-primary shadow-glow-strong flex flex-col gap-1.5 w-full max-w-[320px]">
+<!-- Row 1: Incorrect/Mixed -->
+<div class="grid grid-cols-5 gap-1.5">
+<div class="aspect-square flex items-center justify-center text-2xl font-bold rounded bg-slate-500 text-white border border-slate-600">S</div>
+<div class="aspect-square flex items-center justify-center text-2xl font-bold rounded bg-slate-500 text-white border border-slate-600">T</div>
+<div class="aspect-square flex items-center justify-center text-2xl font-bold rounded bg-yellow-500 text-white border border-yellow-600">A</div>
+<div class="aspect-square flex items-center justify-center text-2xl font-bold rounded bg-slate-500 text-white border border-slate-600">R</div>
+<div class="aspect-square flex items-center justify-center text-2xl font-bold rounded bg-slate-500 text-white border border-slate-600">E</div>
+</div>
+<!-- Row 2: Partial -->
+<div class="grid grid-cols-5 gap-1.5">
+<div class="aspect-square flex items-center justify-center text-2xl font-bold rounded bg-slate-500 text-white border border-slate-600">P</div>
+<div class="aspect-square flex items-center justify-center text-2xl font-bold rounded bg-primary text-background-dark border border-primary">L</div>
+<div class="aspect-square flex items-center justify-center text-2xl font-bold rounded bg-yellow-500 text-white border border-yellow-600">A</div>
+<div class="aspect-square flex items-center justify-center text-2xl font-bold rounded bg-primary text-background-dark border border-primary">N</div>
+<div class="aspect-square flex items-center justify-center text-2xl font-bold rounded bg-slate-500 text-white border border-slate-600">K</div>
+</div>
+<!-- Row 3: Winning Word -->
+<div class="grid grid-cols-5 gap-1.5">
+<div class="aspect-square flex items-center justify-center text-2xl font-bold rounded bg-primary text-background-dark border border-primary shadow-sm">P</div>
+<div class="aspect-square flex items-center justify-center text-2xl font-bold rounded bg-primary text-background-dark border border-primary shadow-sm">L</div>
+<div class="aspect-square flex items-center justify-center text-2xl font-bold rounded bg-primary text-background-dark border border-primary shadow-sm">A</div>
+<div class="aspect-square flex items-center justify-center text-2xl font-bold rounded bg-primary text-background-dark border border-primary shadow-sm">N</div>
+<div class="aspect-square flex items-center justify-center text-2xl font-bold rounded bg-primary text-background-dark border border-primary shadow-sm">T</div>
+</div>
+<!-- Row 4: Empty -->
+<div class="grid grid-cols-5 gap-1.5">
+<div class="aspect-square rounded border-2 border-slate-200 dark:border-white/10 bg-slate-50 dark:bg-white/5"></div>
+<div class="aspect-square rounded border-2 border-slate-200 dark:border-white/10 bg-slate-50 dark:bg-white/5"></div>
+<div class="aspect-square rounded border-2 border-slate-200 dark:border-white/10 bg-slate-50 dark:bg-white/5"></div>
+<div class="aspect-square rounded border-2 border-slate-200 dark:border-white/10 bg-slate-50 dark:bg-white/5"></div>
+<div class="aspect-square rounded border-2 border-slate-200 dark:border-white/10 bg-slate-50 dark:bg-white/5"></div>
+</div>
+<!-- Row 5: Empty -->
+<div class="grid grid-cols-5 gap-1.5">
+<div class="aspect-square rounded border-2 border-slate-200 dark:border-white/10 bg-slate-50 dark:bg-white/5"></div>
+<div class="aspect-square rounded border-2 border-slate-200 dark:border-white/10 bg-slate-50 dark:bg-white/5"></div>
+<div class="aspect-square rounded border-2 border-slate-200 dark:border-white/10 bg-slate-50 dark:bg-white/5"></div>
+<div class="aspect-square rounded border-2 border-slate-200 dark:border-white/10 bg-slate-50 dark:bg-white/5"></div>
+<div class="aspect-square rounded border-2 border-slate-200 dark:border-white/10 bg-slate-50 dark:bg-white/5"></div>
+</div>
+<!-- Row 6: Empty -->
+<div class="grid grid-cols-5 gap-1.5">
+<div class="aspect-square rounded border-2 border-slate-200 dark:border-white/10 bg-slate-50 dark:bg-white/5"></div>
+<div class="aspect-square rounded border-2 border-slate-200 dark:border-white/10 bg-slate-50 dark:bg-white/5"></div>
+<div class="aspect-square rounded border-2 border-slate-200 dark:border-white/10 bg-slate-50 dark:bg-white/5"></div>
+<div class="aspect-square rounded border-2 border-slate-200 dark:border-white/10 bg-slate-50 dark:bg-white/5"></div>
+<div class="aspect-square rounded border-2 border-slate-200 dark:border-white/10 bg-slate-50 dark:bg-white/5"></div>
+</div>
+</div>
+<!-- Win Message Toast -->
+<div class="absolute -bottom-12 left-1/2 -translate-x-1/2 bg-primary text-background-dark font-bold px-4 py-2 rounded-full shadow-lg text-sm whitespace-nowrap animate-bounce">
+                You Won! +25 MMR
+            </div>
+</div>
+</main>
+<!-- Keyboard -->
+<footer class="p-2 pb-6 w-full max-w-md mx-auto shrink-0">
+<div class="flex flex-col gap-2 w-full">
+<!-- Row 1 -->
+<div class="flex justify-center gap-1.5">
+<button class="h-12 flex-1 rounded font-bold text-sm bg-slate-300 text-slate-900 dark:bg-white/10 dark:text-white hover:bg-slate-400 dark:hover:bg-white/20">Q</button>
+<button class="h-12 flex-1 rounded font-bold text-sm bg-slate-300 text-slate-900 dark:bg-white/10 dark:text-white hover:bg-slate-400 dark:hover:bg-white/20">W</button>
+<button class="h-12 flex-1 rounded font-bold text-sm bg-slate-300 text-slate-900 dark:bg-white/10 dark:text-white hover:bg-slate-400 dark:hover:bg-white/20">E</button>
+<button class="h-12 flex-1 rounded font-bold text-sm bg-slate-300 text-slate-900 dark:bg-white/10 dark:text-white hover:bg-slate-400 dark:hover:bg-white/20">R</button>
+<button class="h-12 flex-1 rounded font-bold text-sm bg-primary text-background-dark shadow-[0_0_10px_rgba(19,236,91,0.3)]">T</button>
+<button class="h-12 flex-1 rounded font-bold text-sm bg-slate-300 text-slate-900 dark:bg-white/10 dark:text-white hover:bg-slate-400 dark:hover:bg-white/20">Y</button>
+<button class="h-12 flex-1 rounded font-bold text-sm bg-slate-300 text-slate-900 dark:bg-white/10 dark:text-white hover:bg-slate-400 dark:hover:bg-white/20">U</button>
+<button class="h-12 flex-1 rounded font-bold text-sm bg-slate-300 text-slate-900 dark:bg-white/10 dark:text-white hover:bg-slate-400 dark:hover:bg-white/20">I</button>
+<button class="h-12 flex-1 rounded font-bold text-sm bg-slate-300 text-slate-900 dark:bg-white/10 dark:text-white hover:bg-slate-400 dark:hover:bg-white/20">O</button>
+<button class="h-12 flex-1 rounded font-bold text-sm bg-primary text-background-dark shadow-[0_0_10px_rgba(19,236,91,0.3)]">P</button>
+</div>
+<!-- Row 2 -->
+<div class="flex justify-center gap-1.5 px-4">
+<button class="h-12 flex-1 rounded font-bold text-sm bg-primary text-background-dark shadow-[0_0_10px_rgba(19,236,91,0.3)]">A</button>
+<button class="h-12 flex-1 rounded font-bold text-sm bg-slate-300 text-slate-900 dark:bg-white/10 dark:text-white hover:bg-slate-400 dark:hover:bg-white/20">S</button>
+<button class="h-12 flex-1 rounded font-bold text-sm bg-slate-300 text-slate-900 dark:bg-white/10 dark:text-white hover:bg-slate-400 dark:hover:bg-white/20">D</button>
+<button class="h-12 flex-1 rounded font-bold text-sm bg-slate-300 text-slate-900 dark:bg-white/10 dark:text-white hover:bg-slate-400 dark:hover:bg-white/20">F</button>
+<button class="h-12 flex-1 rounded font-bold text-sm bg-slate-300 text-slate-900 dark:bg-white/10 dark:text-white hover:bg-slate-400 dark:hover:bg-white/20">G</button>
+<button class="h-12 flex-1 rounded font-bold text-sm bg-slate-300 text-slate-900 dark:bg-white/10 dark:text-white hover:bg-slate-400 dark:hover:bg-white/20">H</button>
+<button class="h-12 flex-1 rounded font-bold text-sm bg-slate-300 text-slate-900 dark:bg-white/10 dark:text-white hover:bg-slate-400 dark:hover:bg-white/20">J</button>
+<button class="h-12 flex-1 rounded font-bold text-sm bg-slate-300 text-slate-900 dark:bg-white/10 dark:text-white hover:bg-slate-400 dark:hover:bg-white/20">K</button>
+<button class="h-12 flex-1 rounded font-bold text-sm bg-primary text-background-dark shadow-[0_0_10px_rgba(19,236,91,0.3)]">L</button>
+</div>
+<!-- Row 3 -->
+<div class="flex justify-center gap-1.5">
+<button class="h-12 px-4 rounded font-bold text-sm bg-primary text-background-dark shadow-glow hover:bg-green-400 transition-colors uppercase">Enter</button>
+<button class="h-12 flex-1 rounded font-bold text-sm bg-slate-500 text-white dark:bg-[#3A3A3C] hover:bg-slate-600">Z</button>
+<button class="h-12 flex-1 rounded font-bold text-sm bg-slate-300 text-slate-900 dark:bg-white/10 dark:text-white hover:bg-slate-400 dark:hover:bg-white/20">X</button>
+<button class="h-12 flex-1 rounded font-bold text-sm bg-slate-300 text-slate-900 dark:bg-white/10 dark:text-white hover:bg-slate-400 dark:hover:bg-white/20">C</button>
+<button class="h-12 flex-1 rounded font-bold text-sm bg-slate-300 text-slate-900 dark:bg-white/10 dark:text-white hover:bg-slate-400 dark:hover:bg-white/20">V</button>
+<button class="h-12 flex-1 rounded font-bold text-sm bg-slate-300 text-slate-900 dark:bg-white/10 dark:text-white hover:bg-slate-400 dark:hover:bg-white/20">B</button>
+<button class="h-12 flex-1 rounded font-bold text-sm bg-primary text-background-dark shadow-[0_0_10px_rgba(19,236,91,0.3)]">N</button>
+<button class="h-12 flex-1 rounded font-bold text-sm bg-slate-300 text-slate-900 dark:bg-white/10 dark:text-white hover:bg-slate-400 dark:hover:bg-white/20">M</button>
+<button class="h-12 px-4 rounded font-bold text-sm bg-slate-300 text-slate-900 dark:bg-white/10 dark:text-white hover:bg-slate-400 dark:hover:bg-white/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-lg">backspace</span>
+</button>
+</div>
+</div>
+</footer>
+</body></html>

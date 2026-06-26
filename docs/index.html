@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lexis - Günün Kelimesi</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --primary: #10b981;
+            --primary-hover: #059669;
+            --text-light: #f8fafc;
+            --text-muted: #94a3b8;
+            --glass-bg: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: "Outfit", sans-serif; }
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-light);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            overflow-x: hidden;
+            background-image: radial-gradient(circle at 15% 50%, rgba(16, 185, 129, 0.15), transparent 25%),
+                              radial-gradient(circle at 85% 30%, rgba(59, 130, 246, 0.15), transparent 25%);
+        }
+        .container {
+            max-width: 1200px;
+            padding: 2rem;
+            text-align: center;
+            z-index: 10;
+        }
+        .glass-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 3rem 2rem;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            animation: float 6s ease-in-out infinite;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .logo {
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(135deg, #10b981, #3b82f6);
+            border-radius: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            font-weight: 800;
+            margin: 0 auto 1.5rem;
+            box-shadow: 0 10px 25px rgba(16, 185, 129, 0.4);
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+        h1 { font-size: 3.5rem; font-weight: 800; margin-bottom: 0.5rem; letter-spacing: -1px; }
+        p.subtitle { font-size: 1.25rem; color: var(--text-muted); margin-bottom: 2.5rem; line-height: 1.6; }
+        .download-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background-color: var(--primary);
+            color: white;
+            text-decoration: none;
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            font-size: 1.25rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 20px rgba(16, 185, 129, 0.3);
+        }
+        .download-btn:hover {
+            background-color: var(--primary-hover);
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(16, 185, 129, 0.4);
+        }
+        .download-btn svg { width: 24px; height: 24px; fill: currentColor; }
+        .version-info {
+            margin-top: 1.5rem;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        .pulse-dot {
+            width: 8px;
+            height: 8px;
+            background-color: var(--primary);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+        .features {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            margin-top: 4rem;
+            flex-wrap: wrap;
+        }
+        .feature-pill {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-light);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        @keyframes pulse {
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
+            70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(16, 185, 129, 0); }
+            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="glass-card">
+            <div class="logo">L</div>
+            <h1>Lexis</h1>
+            <p class="subtitle">Arkadaşlarınla yarış, kelime dağarcığını test et ve günün kelimesini ilk sen bul!</p>
+            
+            <a href="#" id="download-btn" class="download-btn">
+                <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+                Android APK İndir
+            </a>
+            
+            <div class="version-info">
+                <div class="pulse-dot"></div>
+                <span id="version-text">En güncel sürüm yükleniyor...</span>
+            </div>
+        </div>
+
+        <div class="features">
+            <div class="feature-pill">🌐 Online Eşleşme</div>
+            <div class="feature-pill">🏆 Puanlı Seri Modu</div>
+            <div class="feature-pill">🎁 Günlük Yeni Kelime</div>
+        </div>
+    </div>
+
+    <script>
+        // Otomatik GitHub Repo Algılama ve Son Sürüm Çekme
+        async function fetchLatestRelease() {
+            try {
+                let username = "mfbilgin";
+                let repo = "lexis-game";
+                
+                // Eğer sayfa Github Pages üzerinde çalışıyorsa otomatik algıla
+                if (window.location.hostname.includes("github.io")) {
+                    username = window.location.hostname.split(".")[0];
+                    const pathParts = window.location.pathname.split("/").filter(p => p);
+                    if (pathParts.length > 0) {
+                        repo = pathParts[0];
+                    }
+                }
+
+                // EĞER TEST AŞAMASINDAYSANIZ, YUKARIDAKİ username ve repo DEĞİŞKENLERİNİ EL İLE DOLDURABİLİRSİNİZ.
+                
+                const response = await fetch(`https://api.github.com/repos/${username}/${repo}/releases/latest`);
+                if (response.ok) {
+                    const data = await response.json();
+                    const apkAsset = data.assets.find(a => a.name.endsWith(".apk"));
+                    
+                    if (apkAsset) {
+                        document.getElementById("download-btn").href = apkAsset.browser_download_url;
+                        document.getElementById("version-text").innerText = `En Güncel Sürüm: ${data.tag_name}`;
+                    } else {
+                        document.getElementById("version-text").innerText = `Sürüm: ${data.tag_name} (APK bulunamadı)`;
+                    }
+                } else {
+                    document.getElementById("version-text").innerText = "Henüz yayınlanmış bir sürüm yok.";
+                }
+            } catch (error) {
+                console.error("Release fetch error:", error);
+                document.getElementById("version-text").innerText = "Sürüm bilgisi alınamadı.";
+            }
+        }
+
+        fetchLatestRelease();
+    </script>
+</body>
+</html>
