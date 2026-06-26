@@ -180,9 +180,9 @@
                     
                     if (apkAsset) {
                         document.getElementById("download-btn").href = apkAsset.browser_download_url;
-                        document.getElementById("version-text").innerText = `En Güncel Sürüm: ${data.tag_name}`;
+                        document.getElementById("version-text").innerText = `En Güncel Sürüm: ${data.tag_name.split('+')[0]}`;
                     } else {
-                        document.getElementById("version-text").innerText = `Sürüm: ${data.tag_name} (APK bulunamadı)`;
+                        document.getElementById("version-text").innerText = `Sürüm: ${data.tag_name.split('+')[0]} (APK bulunamadı)`;
                     }
                 } else {
                     document.getElementById("version-text").innerText = "Henüz yayınlanmış bir sürüm yok.";
