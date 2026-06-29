@@ -50,3 +50,7 @@ app.*.map.json
 key.properties
 
 gts.json
+
+node_modules/
+
+node_modules/
